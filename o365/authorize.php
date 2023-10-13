@@ -10,7 +10,7 @@ require_once('Office365Service.php');
 $code = $_GET['code'];
 $session_state = $_GET['session_state'];
 
-$errorPage = "http".(($_SERVER["HTTPS"] == "on") ? "s://" : "://").$_SERVER["HTTP_HOST"]."/php-calendar/error.php"; 
+$errorPage = "http".(($_SERVER["HTTPS"] == "on") ? "s://" : "://").$_SERVER["HTTP_HOST"]."/um_invoices_new/utilities/php-calendar/error.php"; 
 
 if (is_null($code)) {
   // Display error 
@@ -21,7 +21,7 @@ if (is_null($code)) {
 }
 else {
   error_log("authorize.php called with code: ".$code);
-  $redirectUri = "http".(($_SERVER["HTTPS"] == "on") ? "s://" : "://").$_SERVER["HTTP_HOST"]."/php-calendar/o365/authorize.php"; 
+  $redirectUri = "http".(($_SERVER["HTTPS"] == "on") ? "s://" : "://").$_SERVER["HTTP_HOST"]."/um_invoices_new/utilities/php-calendar/o365/authorize.php"; 
   
   error_log("Calling getTokenFromAuthCode");
   // Use the code supplied by Azure to request an access token.
@@ -38,7 +38,7 @@ else {
     $_SESSION['userName'] = Office365Service::getUserName($tokens['id_token']);
 
     // Redirect back to the homepage.
-    $homePage = "http".(($_SERVER["HTTPS"] == "on") ? "s://" : "://").$_SERVER["HTTP_HOST"]."/php-calendar/home.php"; 
+    $homePage = "http".(($_SERVER["HTTPS"] == "on") ? "s://" : "://").$_SERVER["HTTP_HOST"]."/um_invoices_new/utilities/php-calendar/home.php"; 
     header("Location: ".$homePage);
     exit;
   }

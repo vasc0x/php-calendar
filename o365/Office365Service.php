@@ -10,7 +10,7 @@
     private static $authorizeUrl = '/common/oauth2/authorize?client_id=%1$s&redirect_uri=%2$s&response_type=code';
     private static $tokenUrl = "/common/oauth2/token";
     private static $logoutUrl = '/common/oauth2/logout?post_logout_redirect_uri=%1$s';
-    private static $outlookApiUrl = "https://outlook.office.com/api/v1.0";
+    private static $outlookApiUrl = "https://graph.microsoft.com/v1.0/";
     
     // Set this to true to enable Fiddler capture.
     // Note that if you have this set to true and you are not running Fiddler
@@ -217,8 +217,8 @@
       $calendarViewUrl = self::$outlookApiUrl."/Me/CalendarView?"
                         ."startDateTime=".$windowStartUrl
                         ."&endDateTime=".$windowEndUrl
-                        ."&\$select=Subject,Start,End" // Use $select to limit the data returned
-                        ."&\$orderby=Start";           // Sort the results by the start time.
+                        ."&\$select=Subject,Start,End"; // Use $select to limit the data returned
+                        // ."&\$orderby=Start";           // Sort the results by the start time.
       
       return self::makeApiCall($access_token, "GET", $calendarViewUrl);
     }

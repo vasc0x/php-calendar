@@ -9,8 +9,14 @@ SESSION VARIABLES:
     echo "Session ID: ".session_id()."\n";
     foreach ($_SESSION as $key=>$value) 
     {
-      echo "  ".$key.": ".$value;
-      echo "\n";
+      if ($key == 'events') 
+      {
+        continue;
+      }
+      else
+      {
+        echo $key."=".$value."\n";
+      }
     }
   ?>
 </pre>
